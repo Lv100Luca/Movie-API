@@ -53,7 +53,7 @@ public class MovieApiController : ControllerBase
     {
         try
         {
-            return Ok(_movieController.GetMovieByName(name));
+            return Ok(_movieController.GetMovieByName(name.ToLower()));
         }
         catch (Exception exception)
         {
