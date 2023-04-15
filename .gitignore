@@ -3,7 +3,3 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-# Rider IDE files
-.idea/
-*.sln.iml
-*.csproj.user
