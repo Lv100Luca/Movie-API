@@ -19,7 +19,10 @@
 
 # Mono auto generated files
 mono_crash.*
-
+discord.xml
+vcs.xml
+indexLayout.xml
+.name
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
