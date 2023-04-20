@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SOFTW2_Uebungen.Dto;
 using SOFTW2_Uebungen.Models;
 
 namespace SOFTW2_Uebungen.Controllers;
@@ -24,16 +25,18 @@ public class MovieApiController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddMovie(Movie movie) // task 2
+    public IActionResult AddMovie(MovieDataDto data) // task 2
+    //todo take single string
     {
-        movie = _movieController.AddMovie(movie);
+        Movie movie = _movieController.AddMovie(data.name);
         return CreatedAtAction("addMovie", new
         {
             id = movie.Id,
         }, movie);
     }
+    
     //todo exception
-    [HttpGet("{id:int}")]
+    [HttpGet("id/{id:int}")]
     public IActionResult GetMovieById(int id) // task 3
     {
         try
@@ -53,7 +56,7 @@ public class MovieApiController : ControllerBase
     {
         try
         {
-            return Ok(_movieController.GetMovieByName(name.ToLower()));
+            return Ok(_movieController.GetMovieByName(name.ToLower())); //todo return all movies
         }
         catch (Exception exception)
         {
@@ -61,9 +64,10 @@ public class MovieApiController : ControllerBase
         }
     }
 
-    [HttpDelete("id{id:int}")]
+    [HttpDelete("id/{id:int}")]
     public IActionResult DeleteMovieWithId(int id)
     {
+        _logger.LogTrace("Deleting: " + id);
         bool deleteResult = _movieController.DeleteMovie(id);
         if (deleteResult == true)
         {

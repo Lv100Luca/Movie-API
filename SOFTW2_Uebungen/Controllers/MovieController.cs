@@ -11,6 +11,9 @@ public class MovieController
         this._logger = logger;
         _movies.Add(new Movie(1, "Rambo"));
         _movies.Add(new Movie(2, "Alien"));
+        _movies.Add(new Movie(3, "TesT"));
+        _movies.Add(new Movie(4, "TEST"));
+        _movies.Add(new Movie(5, "Test"));
     }
 
     public IEnumerable<Movie> GetMovies()
@@ -31,11 +34,11 @@ public class MovieController
         }
     }
 
-    public Movie GetMovieByName(string name) // ask -> single movie with matching name or multiple 
+    public Movie[] GetMovieByName(string name) // ask -> single movie with matching name or multiple 
     {
         if (this.Has(name))
         {
-            return _movies.Single(movie => movie.Name.ToLower() == name); //todo: ID doesnt exist exception
+            return _movies.Where(movie => movie.Name.ToLower() == name).ToArray(); //todo: ID doesnt exist exception
         }
         else
         {
@@ -44,9 +47,11 @@ public class MovieController
         }
     }
 
-    public Movie AddMovie(Movie movie) // ask must adding movies provide an ID
+    public Movie AddMovie(string name) // ask must adding movies provide an ID
     {
-        movie.Id = this._movies.Count + 1;
+        Movie movie = new Movie(-1, name); // todo implement better structure
+        // movie.Id = this._movies.Count + 1; old
+        movie.Id = _movies.MaxBy(e => e.Id).Id + 1;
         this._movies.Add(movie);
         return movie;
     }
@@ -67,7 +72,8 @@ public class MovieController
 
     private bool Has(string name)
     {
-        return _movies.Any(movie => movie.Name.ToLower() == name);
+        Console.Out.WriteLine(name + "/");
+        return _movies.Any(movie => String.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
     }
     private bool Has(int id)
     {
