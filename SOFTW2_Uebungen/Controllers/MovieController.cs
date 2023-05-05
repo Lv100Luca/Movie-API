@@ -26,7 +26,7 @@ public class MovieController
     {
         if (this.Has(id))
         {
-            return _movies.Single(movie => movie.Id == id); //todo: ID doesnt exist exception
+            return _movies.Single(movie => movie.Id == id);
         }
         else
         {
@@ -39,7 +39,7 @@ public class MovieController
     {
         if (this.Has(name))
         {
-            return _movies.Where(movie => movie.Name.ToLower() == name).ToArray(); //todo: ID doesnt exist exception
+            return _movies.Where(movie => movie.Name.ToLower() == name).ToArray();
         }
         else
         {
