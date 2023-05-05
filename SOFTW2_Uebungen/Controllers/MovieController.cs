@@ -48,7 +48,7 @@ public class MovieController
     {
         if (this.Has(name))
         {
-            return _movies.Where(movie => movie.Name.ToLower() == name).ToArray();
+            return _movies.Where(movie => movie.Name.ToLower().Contains(name)).ToArray();
         }
         else
         {
@@ -83,8 +83,8 @@ public class MovieController
 
     private bool Has(string name)
     {
-        Console.Out.WriteLine(name + "/");
-        return _movies.Any(movie => string.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
+        // return _movies.Any(movie => string.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
+        return _movies.Any(movie => movie.Name.ToLower().Contains(name));
     }
     private bool Has(int id)
     {
