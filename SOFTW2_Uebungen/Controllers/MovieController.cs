@@ -59,9 +59,14 @@ public class MovieController
 
     public Movie AddMovie(string name) // ask must adding movies provide an ID
     {
+        int maxId = -1;
+        if (_movies.MaxBy(movie => movie.Id) != null)
+        {
+            maxId = _movies.MaxBy(movie1 => movie1.Id)!.Id;
+        }
         Movie movie = new Movie(name)
         {
-            Id = _movies.MaxBy(e => e.Id).Id + 1 // fixme 
+            Id = maxId + 1 // fixme 
         }; // todo implement better structure
         this._movies.Add(movie);
         return movie;
