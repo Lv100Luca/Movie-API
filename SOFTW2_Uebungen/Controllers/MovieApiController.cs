@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SOFTW2_Uebungen.Dto;
 using SOFTW2_Uebungen.Models;
+using SOFTW2_Uebungen.Models.Excxeption;
 
 namespace SOFTW2_Uebungen.Controllers;
 
@@ -44,8 +45,9 @@ public class MovieApiController : ControllerBase
             Movie movie = _movieController.GetMovieById(id);
             return Ok(movie);
         }
-        catch (Exception exception)
+        catch (MovieNotFoundException movieNotFoundException)
         {
+            _logger.LogWarning(movieNotFoundException.Message);
             return NotFound($"There is no Movie with the ID: {id}");
         }
         ;
@@ -58,8 +60,9 @@ public class MovieApiController : ControllerBase
         {
             return Ok(_movieController.GetMovieByName(name.ToLower())); //todo return all movies
         }
-        catch (Exception exception)
+        catch (MovieNotFoundException movieNotFoundException)
         {
+            _logger.LogWarning(movieNotFoundException.Message); // ask -> why compile time constant?
             return NotFound($"There is no Movie with the Name: {name}");
         }
     }
