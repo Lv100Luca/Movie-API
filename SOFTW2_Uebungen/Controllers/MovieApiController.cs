@@ -70,7 +70,7 @@ public class MovieApiController : ControllerBase
     [HttpDelete("id/{id:int}")]
     public IActionResult DeleteMovieWithId(int id)
     {
-        _logger.LogTrace("Deleting: " + id);
+        _logger.LogTrace("Deleting: {Id}", id);
         bool deleteResult = _movieController.DeleteMovie(id);
         if (deleteResult == true)
         {
