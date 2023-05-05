@@ -26,7 +26,7 @@ public class MovieApiController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddMovie(MovieDataDto data) // task 2
+    public IActionResult AddMovie(MovieDataDto data) // task 2 ask -> get rid of dto since incoming data ist just single string
         //todo take single string
     {
         Movie movie = _movieController.AddMovie(data.name);
@@ -53,7 +53,7 @@ public class MovieApiController : ControllerBase
     }
 
 
-    [HttpGet("name/{name}")]
+    [HttpGet("name/{name}")] // ask -> doesnt need typehint @DeleteMovieWithId
     public IActionResult GetMovieByName(string name) // task 4
     {
         try
@@ -67,7 +67,7 @@ public class MovieApiController : ControllerBase
         }
     }
 
-    [HttpDelete("id/{id:int}")]
+    [HttpDelete("id/{id:int}")] //ask -> needs type hint
     public IActionResult DeleteMovieWithId(int id)
     {
         _logger.LogTrace("Deleting: {Id}", id);
