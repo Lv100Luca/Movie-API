@@ -1,4 +1,5 @@
 ﻿using SOFTW2_Uebungen.Models;
+using SOFTW2_Uebungen.Models.Excxeption;
 
 namespace SOFTW2_Uebungen.Controllers;
 
@@ -30,7 +31,7 @@ public class MovieController
         else
         {
             _logger.LogWarning("Movie with id {Id} doesnt exist", id);
-            throw new Exception("Movie doesnt exist");
+            throw new MovieNotFoundException($"Movie with id {id} doesnt exist");
         }
     }
 
@@ -42,8 +43,8 @@ public class MovieController
         }
         else
         {
-            _logger.LogWarning("Movie with id {Id} doesnt exist", name);
-            throw new Exception("Movie doesnt exist");
+            _logger.LogWarning("Movie with name {Name} doesnt exist", name);
+            throw new MovieNotFoundException($"Movie with name {name} doesnt exist");
         }
     }
 
