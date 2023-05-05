@@ -27,7 +27,7 @@ public class MovieApiController : ControllerBase
 
     [HttpPost]
     public IActionResult AddMovie(MovieDataDto data) // task 2
-    //todo take single string
+        //todo take single string
     {
         Movie movie = _movieController.AddMovie(data.name);
         return CreatedAtAction("addMovie", new
@@ -35,8 +35,8 @@ public class MovieApiController : ControllerBase
             id = movie.Id,
         }, movie);
     }
-    
-    //todo exception
+
+
     [HttpGet("id/{id:int}")]
     public IActionResult GetMovieById(int id) // task 3
     {
@@ -50,9 +50,9 @@ public class MovieApiController : ControllerBase
             _logger.LogWarning(movieNotFoundException.Message);
             return NotFound($"There is no Movie with the ID: {id}");
         }
-        ;
     }
-    //todo exception
+
+
     [HttpGet("name/{name}")]
     public IActionResult GetMovieByName(string name) // task 4
     {
