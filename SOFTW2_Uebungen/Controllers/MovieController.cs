@@ -75,7 +75,7 @@ public class MovieController
     private bool Has(string name)
     {
         Console.Out.WriteLine(name + "/");
-        return _movies.Any(movie => String.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
+        return _movies.Any(movie => string.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
     }
     private bool Has(int id)
     {
