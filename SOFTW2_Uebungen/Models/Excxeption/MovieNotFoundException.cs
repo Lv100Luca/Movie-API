@@ -2,7 +2,9 @@
 
 public class MovieNotFoundException : Exception
 {
-    public MovieNotFoundException(): base("Movie not Found"){}
+    public MovieNotFoundException() : base("Movie not Found")
+    {
+    }
 
     public MovieNotFoundException(string message)
         : base(message)
