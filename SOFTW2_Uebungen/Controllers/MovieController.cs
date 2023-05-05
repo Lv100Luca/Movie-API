@@ -7,6 +7,7 @@ public class MovieController
 {
     private readonly List<Movie> _movies = new List<Movie>();
     private readonly ILogger<MovieController> _logger;
+
     public MovieController(ILogger<MovieController> logger)
     {
         this._logger = logger;
@@ -44,7 +45,7 @@ public class MovieController
         }
     }
 
-    public Movie[] GetMovieByName(string name) // ask -> single movie with matching name or multiple 
+    public Movie[] GetMovieByName(string name)
     {
         if (this.Has(name))
         {
@@ -57,17 +58,18 @@ public class MovieController
         }
     }
 
-    public Movie AddMovie(string name) // ask must adding movies provide an ID
+    public Movie AddMovie(string name)
     {
         int maxId = -1;
         if (_movies.MaxBy(movie => movie.Id) != null)
         {
             maxId = _movies.MaxBy(movie1 => movie1.Id)!.Id;
         }
+
         Movie movie = new Movie(name)
         {
-            Id = maxId + 1 // fixme 
-        }; // todo implement better structure
+            Id = maxId + 1
+        };
         this._movies.Add(movie);
         return movie;
     }
@@ -91,6 +93,7 @@ public class MovieController
         // return _movies.Any(movie => string.Equals(movie.Name, name, StringComparison.CurrentCultureIgnoreCase));
         return _movies.Any(movie => movie.Name.ToLower().Contains(name));
     }
+
     private bool Has(int id)
     {
         return _movies.Any(movie => movie.Id == id);

@@ -58,7 +58,7 @@ public class MovieApiController : ControllerBase
     {
         try
         {
-            return Ok(_movieController.GetMovieByName(name.ToLower())); //todo return all movies
+            return Ok(_movieController.GetMovieByName(name.ToLower()));
         }
         catch (MovieNotFoundException movieNotFoundException)
         {
