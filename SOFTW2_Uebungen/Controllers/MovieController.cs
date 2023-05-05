@@ -10,11 +10,20 @@ public class MovieController
     public MovieController(ILogger<MovieController> logger)
     {
         this._logger = logger;
-        _movies.Add(new Movie(1, "Rambo"));
-        _movies.Add(new Movie(2, "Alien"));
-        _movies.Add(new Movie(3, "TesT"));
-        _movies.Add(new Movie(4, "TEST"));
-        _movies.Add(new Movie(5, "Test"));
+// numbers should be represented with roman numbers I V M X D etc.
+        this.AddMovie("Rambo");
+        this.AddMovie("Alien");
+        this.AddMovie("Star Wars");
+        this.AddMovie("Star Wars II");
+        this.AddMovie("Star Trek");
+        this.AddMovie("Back to the Future");
+        this.AddMovie("Back to the Future II");
+        this.AddMovie("Matrix");
+        this.AddMovie("Matrix Reloaded");
+        // this.AddMovie("");
+        // this.AddMovie("");
+        // this.AddMovie("");
+        // this.AddMovie("");
     }
 
     public IEnumerable<Movie> GetMovies()
