@@ -33,7 +33,7 @@ public class MovieApiController : ControllerBase
         return CreatedAtAction("addMovie", new
         {
             id = movie.Id,
-        }, movie);
+        }, movie.Id);
     }
 
 
