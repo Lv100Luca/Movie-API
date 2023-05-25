@@ -28,6 +28,7 @@ public class MovieApiController : ControllerBase
     [HttpPost]
     public IActionResult AddMovie(MovieDataDto data) // task 2 ask -> get rid of dto since incoming data ist just single string
         //todo take single string
+        // ask -> [FromBody] oder DTO
     {
         Movie movie = _movieController.AddMovie(data.name);
         return CreatedAtAction("addMovie", new
