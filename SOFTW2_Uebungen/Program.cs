@@ -13,16 +13,22 @@ builder.Services.AddSingleton<MovieController>();
 
 builder.Services.AddCors(options =>
 {
+    // options.AddDefaultPolicy(policy =>
+    // {
+    //     // var allowedOrigins = builder.Configuration.GetRequiredSection("CORS:AllowedOrigins").GetChildren().Select(s => s.Value!).ToArray();
+    //
+    //     policy.AllowCredentials();
+    //     policy.WithOrigins("http://localhost:5173");
+    //     policy.WithHeaders("Accept-Language", "Authorize", "Content-Type");
+    //     policy.AllowAnyHeader();
+    //     policy.AllowAnyMethod();
+    //     policy.WithExposedHeaders("Location");
+    // });
     options.AddDefaultPolicy(policy =>
     {
-        // var allowedOrigins = builder.Configuration.GetRequiredSection("CORS:AllowedOrigins").GetChildren().Select(s => s.Value!).ToArray();
-
-        policy.AllowCredentials();
-        policy.WithOrigins("http://localhost:5173");
-        policy.WithHeaders("Accept-Language", "Authorize", "Content-Type");
-        policy.AllowAnyHeader();
-        policy.AllowAnyMethod();
-        policy.WithExposedHeaders("Location");
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
 
@@ -40,5 +46,5 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
-
+Console.WriteLine("I AM ALIVE!!!!!");
 app.Run();
