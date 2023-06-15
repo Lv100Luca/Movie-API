@@ -26,12 +26,13 @@ public class MovieApiController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult
-        AddMovie([FromBody] String name) // task 2 ask -> get rid of dto since incoming data ist just single string
+    public IActionResult AddMovie(MovieDataDto data) // task 2
+                                                     // ask -> get rid of dto since incoming data ist just single string
         //todo take single string
         // ask -> [FromBody] oder DTO
     {
-        Movie movie = _movieController.AddMovie(name);
+        _logger.LogTrace("Added Movie" + data.name);
+        Movie movie = _movieController.AddMovie(data.name);
         return CreatedAtAction("addMovie", new
         {
             id = movie.Id,
@@ -42,6 +43,7 @@ public class MovieApiController : ControllerBase
     [HttpGet("id/{id:int}")]
     public IActionResult GetMovieById(int id) // task 3
     {
+        _logger.LogTrace("Getting Movie with ID: " + id);
         try
         {
             Movie movie = _movieController.GetMovieById(id);
@@ -58,6 +60,7 @@ public class MovieApiController : ControllerBase
     [HttpGet("name/{name}")] // ask -> doesnt need typehint @DeleteMovieWithId
     public IActionResult GetMovieByName(string name) // task 4
     {
+        _logger.LogTrace("getting Movie by Name: '" + name + "'");
         try
         {
             return Ok(_movieController.GetMovieByName(name.ToLower()));
@@ -65,7 +68,8 @@ public class MovieApiController : ControllerBase
         catch (MovieNotFoundException movieNotFoundException)
         {
             _logger.LogWarning(movieNotFoundException.Message); // ask -> why compile time constant?
-            return NotFound($"There is no Movie with the Name: {name}");
+            // return NotFound($"There is no Movie with the Name: {name}");
+            return Ok(new Movie[0]);
         }
     }
 
