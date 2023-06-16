@@ -12,15 +12,15 @@ public class MovieController
     {
         this._logger = logger;
 // numbers should be represented with roman numbers I V M X D etc.
-        this.AddMovie("Rambo");
-        this.AddMovie("Alien");
-        this.AddMovie("Star Wars");
-        this.AddMovie("Star Wars II");
-        this.AddMovie("Star Trek");
-        this.AddMovie("Back to the Future");
-        this.AddMovie("Back to the Future II");
-        this.AddMovie("Matrix");
-        this.AddMovie("Matrix Reloaded");
+        // this.AddMovie("Rambo");
+        // this.AddMovie("Alien");
+        // this.AddMovie("Star Wars");
+        // this.AddMovie("Star Wars II");
+        // this.AddMovie("Star Trek");
+        // this.AddMovie("Back to the Future");
+        // this.AddMovie("Back to the Future II");
+        // this.AddMovie("Matrix");
+        // this.AddMovie("Matrix Reloaded");
         // this.AddMovie("");
         // this.AddMovie("");
         // this.AddMovie("");
